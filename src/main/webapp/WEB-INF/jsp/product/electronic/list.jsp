@@ -15,19 +15,19 @@
     <c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
     <div class="container">
-        <form action="/product/clothing" method="get">
+        <form action="/product/electronic" method="get">
             <button type="submit" class="btn btn-info">Add Product</button>
         </form>
         <hr>
 
-        <c:if test="${not empty clothing}">
+        <c:if test="${not empty electronic}">
             <c:if test="${not empty message}">
                 <div class="alert alert-success">
                         ${message}
                 </div>
             </c:if>
 
-            <h3>Number of registered products: ${clothing.size()}</h3>
+            <h3>Number of registered products: ${electronic.size()}</h3>
             <hr>
 
             <table class="table table-striped">
@@ -37,30 +37,30 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>Size</th>
-                    <th>Color</th>
-                    <th>Brand</th>
+                    <th>Manufacturer</th>
+                    <th>Voltage</th>
+                    <th>National</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="c" items="${clothing}">
+                <c:forEach var="e" items="${electronic}">
                     <tr>
-                        <td>${c.id}</td>
-                        <td>${c.name}</td>
-                        <td>${c.price}</td>
-                        <td>${c.qty}</td>
-                        <td>${c.size}</td>
-                        <td>${c.color}</td>
-                        <td>${c.brand}</td>
-                        <td><a href="/product/clothing/${c.id}/delete">Delete</a></td>
+                        <td>${e.id}</td>
+                        <td>${e.name}</td>
+                        <td>${e.price}</td>
+                        <td>${e.qty}</td>
+                        <td>${e.manufacturer}</td>
+                        <td>${e.voltage}</td>
+                        <td>${e.national}</td>
+                        <td><a href="/product/electronic/${e.id}/delete">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </c:if>
 
-        <c:if test="${empty clothing}">
+        <c:if test="${empty electronic}">
             <h3>No product registered...</h3>
         </c:if>
     </div>

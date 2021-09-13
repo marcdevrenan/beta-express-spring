@@ -23,7 +23,7 @@ public class ClothingController {
     @PostMapping(value = "/product/clothing/create")
     public String create(Model model, Clothing clothing) {
         clothingService.create(clothing);
-        model.addAttribute("message", clothing.getName() + " has been added to cart!");
+        model.addAttribute("message", clothing.getName() + " has been added to system!");
 
         return getClothingList(model);
     }
