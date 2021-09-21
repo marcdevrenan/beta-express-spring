@@ -1,6 +1,7 @@
 package br.edu.infnet.domain.controller;
 
 import br.edu.infnet.domain.model.Grocery;
+import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.service.GroceryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class GroceryController {
@@ -21,26 +23,27 @@ public class GroceryController {
     }
 
     @PostMapping(value = "/product/grocery/create")
-    public String create(Model model, Grocery grocery) {
+    public String create(Model model, Grocery grocery, @SessionAttribute("user") User user) {
+        grocery.setUser(user);
         groceryService.create(grocery);
         model.addAttribute("message", grocery.getName() + " has been added to system!");
 
-        return getGroceryList(model);
+        return getGroceryList(model, user);
     }
 
     @GetMapping(value = "/product/grocery/list")
-    public String getGroceryList(Model model) {
-        model.addAttribute("grocery", groceryService.getList());
+    public String getGroceryList(Model model, @SessionAttribute("user") User user) {
+        model.addAttribute("grocery", groceryService.getList(user));
 
         return "/product/grocery/list";
     }
 
     @GetMapping(value = "/product/grocery/{id}/delete")
-    public String delete(Model model, @PathVariable Integer id) {
+    public String delete(Model model, @PathVariable Integer id, @SessionAttribute("user") User user) {
         Grocery grocery = groceryService.getById(id);
         groceryService.delete(id);
         model.addAttribute("message", grocery.getName() + " was successfully deleted!");
 
-        return getGroceryList(model);
+        return getGroceryList(model, user);
     }
 }

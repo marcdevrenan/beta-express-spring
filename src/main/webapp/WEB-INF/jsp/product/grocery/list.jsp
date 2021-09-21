@@ -14,11 +14,15 @@
 
     <c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
+    <div class="page-header text-center">
+        <h2>Grocery Summary</h2>
+        <h4>Number of registered products: ${grocery.size()}</h4>
+    </div>
+
     <div class="container">
         <form action="/product/grocery" method="get">
             <button type="submit" class="btn btn-info">Add Product</button>
         </form>
-        <hr>
 
         <c:if test="${not empty grocery}">
             <c:if test="${not empty message}">
@@ -26,9 +30,6 @@
                         ${message}
                 </div>
             </c:if>
-
-            <h3>Number of registered products: ${grocery.size()}</h3>
-            <hr>
 
             <table class="table table-striped">
                 <thead>

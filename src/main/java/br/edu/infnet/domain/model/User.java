@@ -1,6 +1,7 @@
 package br.edu.infnet.domain.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,6 +15,13 @@ public class User {
     private String email;
     private String password;
     private boolean admin;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "addressId")
+    private Address address;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Product> products;
 
     public User() {
     }
@@ -64,5 +72,21 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

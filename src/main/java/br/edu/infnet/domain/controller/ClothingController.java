@@ -1,6 +1,7 @@
 package br.edu.infnet.domain.controller;
 
 import br.edu.infnet.domain.model.Clothing;
+import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.service.ClothingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ClothingController {
@@ -21,26 +23,27 @@ public class ClothingController {
     }
 
     @PostMapping(value = "/product/clothing/create")
-    public String create(Model model, Clothing clothing) {
+    public String create(Model model, Clothing clothing, @SessionAttribute("user") User user) {
+        clothing.setUser(user);
         clothingService.create(clothing);
         model.addAttribute("message", clothing.getName() + " has been added to system!");
 
-        return getClothingList(model);
+        return getClothingList(model, user);
     }
 
     @GetMapping(value = "/product/clothing/list")
-    public String getClothingList(Model model) {
-        model.addAttribute("clothing", clothingService.getList());
+    public String getClothingList(Model model, @SessionAttribute("user") User user) {
+        model.addAttribute("clothing", clothingService.getList(user));
 
         return "/product/clothing/list";
     }
 
     @GetMapping(value = "/product/clothing/{id}/delete")
-    public String delete(Model model, @PathVariable Integer id) {
+    public String delete(Model model, @PathVariable Integer id, @SessionAttribute("user") User user) {
         Clothing clothing = clothingService.getById(id);
         clothingService.delete(id);
         model.addAttribute("message", clothing.getName() + " was successfully deleted!");
 
-        return getClothingList(model);
+        return getClothingList(model, user);
     }
 }

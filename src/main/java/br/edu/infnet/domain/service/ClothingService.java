@@ -1,6 +1,7 @@
 package br.edu.infnet.domain.service;
 
 import br.edu.infnet.domain.model.Clothing;
+import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.repository.ClothingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class ClothingService {
 
     public List<Clothing> getList() {
         return (List<Clothing>) clothingRepository.findAll();
+    }
+
+    public List<Clothing> getList(User user) {
+        return (List<Clothing>) clothingRepository.getClothingByUserId(user.getId());
     }
 
     public Clothing getById(Integer id) {

@@ -13,6 +13,10 @@ public abstract class Product {
     protected float price;
     protected int qty;
 
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
     public Product() {
     }
 
@@ -46,5 +50,13 @@ public abstract class Product {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

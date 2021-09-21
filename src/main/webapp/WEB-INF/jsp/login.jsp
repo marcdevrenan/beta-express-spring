@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<c:import url="/WEB-INF/jsp/navbar.jsp"/>
+
 <div class="container">
     <c:if test="${not empty message}">
         <div class="alert alert-info alert-dismissible">
@@ -21,21 +23,31 @@
     </c:if>
 </div>
 
-<div class="container">
+<div class="page-header text-center">
     <h2>BetaExpress Login</h2>
+</div>
+
+<div class="container text-center">
+
     <form action="/login" method="post">
-        <div class="form-group">
-            <label>Email:</label>
-            <input type="email" class="form-control" name="email">
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <input type="email" class="form-control" placeholder="example@test.com" name="email">
+            </div>
+            <div class="form-group col-md-5">
+                <input type="password" class="form-control" placeholder="password" name="password">
+            </div>
         </div>
-        <div class="form-group">
-            <label>Password:</label>
-            <input type="password" class="form-control" name="password">
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-info">Login</button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-default">Login</button>
-        <a href="/user/create" type="submit" class="btn btn-info">Sign Up</a>
     </form>
 </div>
+
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

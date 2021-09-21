@@ -1,13 +1,13 @@
 package br.edu.infnet.domain.repository;
 
-import br.edu.infnet.domain.model.Grocery;
+import br.edu.infnet.domain.model.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface GroceryRepository extends CrudRepository<Grocery, Integer> {
+public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-    public List<Grocery> getGroceryByUserId(Integer id);
+    public List<Product> getProductByUserId(Integer id);
 }

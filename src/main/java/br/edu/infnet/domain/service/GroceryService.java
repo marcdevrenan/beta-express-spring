@@ -1,6 +1,7 @@
 package br.edu.infnet.domain.service;
 
 import br.edu.infnet.domain.model.Grocery;
+import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.repository.GroceryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class GroceryService {
 
     public List<Grocery> getList() {
         return (List<Grocery>) groceryRepository.findAll();
+    }
+
+    public List<Grocery> getList(User user) {
+        return (List<Grocery>) groceryRepository.getGroceryByUserId(user.getId());
     }
 
     public Grocery getById(Integer id) {

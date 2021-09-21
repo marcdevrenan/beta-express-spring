@@ -14,16 +14,18 @@
 
     <c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
+    <div class="page-header text-center">
+        <h2>Users Summary</h2>
+        <h4>Number of registered users: ${list.size()}</h4>
+    </div>
+
     <div class="container">
         <c:if test="${not empty list}">
             <c:if test="${not empty message}">
-                <div class="alert alert-success">
+                <div class="alert alert-danger">
                     ${message}
                 </div>
             </c:if>
-
-            <h3>Number of registered users: ${list.size()}</h3>
-            <hr>
 
             <table class="table table-striped">
                 <thead>
@@ -32,6 +34,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Products</th>
 
                     <c:if test="${user.admin}">
                         <th></th>
@@ -45,8 +48,9 @@
                         <td>${u.firstName}</td>
                         <td>${u.lastName}</td>
                         <td>${u.email}</td>
+                        <td>${u.products.size()}</td>
 
-                        <c:if test="${user.admin}">
+                        <c:if test="${user.admin && user.id != u.id}">
                             <td><a href="/user/${u.id}/delete">Delete</a></td>
                         </c:if>
                     </tr>

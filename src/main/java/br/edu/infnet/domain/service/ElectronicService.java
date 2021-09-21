@@ -1,6 +1,7 @@
 package br.edu.infnet.domain.service;
 
 import br.edu.infnet.domain.model.Electronic;
+import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.repository.ElectronicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class ElectronicService {
 
     public List<Electronic> getList() {
         return (List<Electronic>) electronicRepository.findAll();
+    }
+
+    public List<Electronic> getList(User user) {
+        return (List<Electronic>) electronicRepository.getElectronicByUserId(user.getId());
     }
 
     public Electronic getById(Integer id) {

@@ -1,5 +1,6 @@
 package br.edu.infnet.domain.controller;
 
+import br.edu.infnet.domain.model.Address;
 import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/create")
-    public String create(Model model, User user) {
+    public String create(Model model, User user, Address address) {
+        user.setAddress(address);
         userService.create(user);
 
         model.addAttribute("message", "The user " + user.getEmail() + " was successfully created!");
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping(value = "/user/list")
