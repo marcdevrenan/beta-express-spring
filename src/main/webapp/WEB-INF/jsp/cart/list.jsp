@@ -15,56 +15,50 @@
 <c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
 <div class="page-header text-center">
-    <h2>Grocery Summary</h2>
-    <h4>Number of registered products: ${grocery.size()}</h4>
+    <h2>Cart Summary</h2>
+    <h4>Number of registered customers: ${cart.size()}</h4>
 </div>
 
 <div class="container">
-    <form action="/product/grocery" method="get">
-        <button type="submit" class="btn btn-info">Add Product</button>
+    <form action="/cart" method="get">
+        <button type="submit" class="btn btn-info">Add Cart</button>
     </form>
 
-    <c:if test="${not empty grocery}">
+    <hr>
+
+    <c:if test="${not empty cart}">
         <c:if test="${not empty message}">
             <div class="alert alert-info">
                     ${message}
             </div>
         </c:if>
 
-        <hr>
-
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Distributor</th>
-                <th>Weight</th>
-                <th>Validity</th>
+                <th>Description</th>
+                <th>Customer</th>
+                <th>Products</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="g" items="${grocery}">
+            <c:forEach var="c" items="${cart}">
                 <tr>
-                    <td>${g.id}</td>
-                    <td>${g.name}</td>
-                    <td>${g.price}</td>
-                    <td>${g.qty}</td>
-                    <td>${g.distributor}</td>
-                    <td>${g.weight}</td>
-                    <td>${g.validity}</td>
-                    <td><a href="/product/grocery/${g.id}/delete">Delete</a></td>
+                    <td>${c.id}</td>
+                    <td>${c.description}</td>
+                    <td>${c.customer.firstName}</td>
+                    <td>${c.products.size()}</td>
+                    <td><a href="/cart/${c.id}/delete">Delete</a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </c:if>
 
-    <c:if test="${empty grocery}">
-        <h3>No product registered...</h3>
+    <c:if test="${empty cart}">
+        <h3>No registered user...</h3>
     </c:if>
 </div>
 

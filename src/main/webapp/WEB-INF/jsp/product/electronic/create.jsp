@@ -12,44 +12,46 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/jsp/navbar.jsp"/>
+<c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
-    <div class="container">
-        <h2>Electronic Form</h2>
+<div class="container">
+    <h2>Electronic Form</h2>
 
-        <form action="/product/electronic/create" method="post">
-            <div class="form-group">
-                <label>Name:</label>
-                <input type="text" class="form-control" name="name">
-            </div>
+    <form action="/product/electronic/create" method="post">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
 
-            <div class="form-group">
-                <label>Price:</label>
-                <input type="number" min="1" step="any" class="form-control" name="price">
-            </div>
+        <div class="form-group">
+            <label>Price:</label>
+            <input type="number" min="1" step="any" class="form-control" name="price">
+        </div>
 
-            <div class="form-group">
-                <label>Qty:</label>
-                <input type="number" min="1" step="any" class="form-control" name="qty">
-            </div>
+        <div class="form-group">
+            <label>Qty:</label>
+            <input type="number" min="1" step="any" class="form-control" name="qty">
+        </div>
 
-            <div class="form-group">
-                <label>Manufacturer:</label>
-                <input type="text" class="form-control" name="manufacturer">
-            </div>
+        <div class="form-group">
+            <label>Manufacturer:</label>
+            <input type="text" class="form-control" name="manufacturer">
+        </div>
 
-            <div class="form-group">
-                <label>Voltage:</label>
-                <input type="text" class="form-control" name="voltage">
-            </div>
+        <div class="form-group">
+            <label>Voltage:</label>
+            <input type="text" class="form-control" name="voltage">
+        </div>
 
-            <div class="checkbox">
-                <label><input type="checkbox" name="national">National</label>
-            </div>
+        <div class="checkbox">
+            <label><input type="checkbox" name="national">National</label>
+        </div>
 
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

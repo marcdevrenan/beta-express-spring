@@ -16,17 +16,19 @@
 
 <div class="page-header text-center">
     <h2>Products Summary</h2>
-    <h4>Number of registered products: ${product.size()}</h4>
+    <h4>Number of registered products: ${products.size()}</h4>
 </div>
 
 <div class="container">
 
-    <c:if test="${not empty product}">
+    <c:if test="${not empty products}">
         <c:if test="${not empty message}">
-            <div class="alert alert-danger">
+            <div class="alert alert-info">
                     ${message}
             </div>
         </c:if>
+
+        <hr>
 
         <table class="table table-striped">
             <thead>
@@ -39,7 +41,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="p" items="${product}">
+            <c:forEach var="p" items="${products}">
                 <tr>
                     <td>${p.id}</td>
                     <td>${p.name}</td>
@@ -52,10 +54,12 @@
         </table>
     </c:if>
 
-    <c:if test="${empty product}">
+    <c:if test="${empty products}">
         <h3>No product registered...</h3>
     </c:if>
 </div>
+
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

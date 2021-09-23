@@ -4,6 +4,7 @@ import br.edu.infnet.domain.model.Clothing;
 import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.repository.ClothingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +24,15 @@ public class ClothingService {
     }
 
     public List<Clothing> getList(User user) {
-        return (List<Clothing>) clothingRepository.getClothingByUserId(user.getId());
+        return (List<Clothing>) clothingRepository.getClothingByUserId(user.getId(), Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Clothing getById(Integer id) {
         return clothingRepository.findById(id).orElse(null);
+    }
+
+    public Integer getQty() {
+        return (int) clothingRepository.count();
     }
 
     public void delete(Integer id) {

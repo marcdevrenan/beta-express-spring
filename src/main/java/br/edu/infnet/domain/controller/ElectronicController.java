@@ -41,8 +41,17 @@ public class ElectronicController {
     @GetMapping(value = "/product/electronic/{id}/delete")
     public String delete(Model model, @PathVariable Integer id, @SessionAttribute("user") User user) {
         Electronic electronic = electronicService.getById(id);
-        electronicService.delete(id);
-        model.addAttribute("message", electronic.getName() + " was successfully deleted!");
+
+        String message;
+        try {
+            electronicService.delete(id);
+            message = "The product " + electronic.getName() + " was successfully deleted!";
+
+        } catch (Exception e) {
+            message = "It was impossible to delete the product " + electronic.getName();
+        }
+
+        model.addAttribute("message", message);
 
         return getElectronicList(model, user);
     }

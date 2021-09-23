@@ -12,59 +12,63 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/jsp/navbar.jsp"/>
+<c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
-    <div class="page-header text-center">
-        <h2>Electronic Summary</h2>
-        <h4>Number of registered products: ${electronic.size()}</h4>
-    </div>
+<div class="page-header text-center">
+    <h2>Electronic Summary</h2>
+    <h4>Number of registered products: ${electronic.size()}</h4>
+</div>
 
-    <div class="container">
-        <form action="/product/electronic" method="get">
-            <button type="submit" class="btn btn-info">Add Product</button>
-        </form>
+<div class="container">
+    <form action="/product/electronic" method="get">
+        <button type="submit" class="btn btn-info">Add Product</button>
+    </form>
 
-        <c:if test="${not empty electronic}">
-            <c:if test="${not empty message}">
-                <div class="alert alert-success">
-                        ${message}
-                </div>
-            </c:if>
+    <hr>
 
-            <table class="table table-striped">
-                <thead>
+    <c:if test="${not empty electronic}">
+        <c:if test="${not empty message}">
+            <div class="alert alert-info">
+                    ${message}
+            </div>
+        </c:if>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Manufacturer</th>
+                <th>Voltage</th>
+                <th>National</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="e" items="${electronic}">
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Manufacturer</th>
-                    <th>Voltage</th>
-                    <th>National</th>
-                    <th></th>
+                    <td>${e.id}</td>
+                    <td>${e.name}</td>
+                    <td>${e.price}</td>
+                    <td>${e.qty}</td>
+                    <td>${e.manufacturer}</td>
+                    <td>${e.voltage}</td>
+                    <td>${e.national}</td>
+                    <td><a href="/product/electronic/${e.id}/delete">Delete</a></td>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="e" items="${electronic}">
-                    <tr>
-                        <td>${e.id}</td>
-                        <td>${e.name}</td>
-                        <td>${e.price}</td>
-                        <td>${e.qty}</td>
-                        <td>${e.manufacturer}</td>
-                        <td>${e.voltage}</td>
-                        <td>${e.national}</td>
-                        <td><a href="/product/electronic/${e.id}/delete">Delete</a></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 
-        <c:if test="${empty electronic}">
-            <h3>No product registered...</h3>
-        </c:if>
-    </div>
+    <c:if test="${empty electronic}">
+        <h3>No product registered...</h3>
+    </c:if>
+</div>
+
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

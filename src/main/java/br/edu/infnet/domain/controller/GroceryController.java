@@ -41,8 +41,16 @@ public class GroceryController {
     @GetMapping(value = "/product/grocery/{id}/delete")
     public String delete(Model model, @PathVariable Integer id, @SessionAttribute("user") User user) {
         Grocery grocery = groceryService.getById(id);
-        groceryService.delete(id);
-        model.addAttribute("message", grocery.getName() + " was successfully deleted!");
+
+        String message;
+        try {
+            groceryService.delete(id);
+            message = "The product " + grocery.getName() + " was successfully deleted!";
+        } catch (Exception e) {
+            message = "It was impossible to delete the product " + grocery.getName();
+        }
+
+        model.addAttribute("message", message);
 
         return getGroceryList(model, user);
     }

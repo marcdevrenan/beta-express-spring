@@ -16,15 +16,21 @@ public class User {
     private String password;
     private boolean admin;
 
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "userId")
+    private List<Customer> customers;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "userId")
+    private List<Product> products;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "userId")
+    private List<Cart> carts;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "addressId")
     private Address address;
-
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Product> products;
-
-    public User() {
-    }
 
     public Integer getId() {
         return id;
@@ -74,12 +80,12 @@ public class User {
         this.admin = admin;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public List<Product> getProducts() {
@@ -88,5 +94,21 @@ public class User {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

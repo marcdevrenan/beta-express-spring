@@ -18,7 +18,7 @@ public class ProductController {
 
     @GetMapping(value = "/product/list")
     public String getProductList(Model model, @SessionAttribute("user") User user) {
-        model.addAttribute("product", productService.getList(user));
+        model.addAttribute("products", productService.getList(user));
 
         return "/product/list";
     }
@@ -26,8 +26,16 @@ public class ProductController {
     @GetMapping(value = "/product/{id}/delete")
     public String delete(Model model, @PathVariable Integer id, @SessionAttribute("user") User user){
         Product product = productService.getById(id);
-        productService.delete(id);
-        model.addAttribute("message", product.getName() + " was successfully deleted!");
+
+        String message;
+        try {
+            productService.delete(id);
+            message = "The product " + product.getName() + " was successfully deleted!";
+        } catch (Exception e) {
+            message = "It was impossible to delete the product " + product.getName();
+        }
+
+        model.addAttribute("message", message);
 
         return getProductList(model, user);
     }

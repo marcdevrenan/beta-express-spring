@@ -15,56 +15,53 @@
 <c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
 <div class="page-header text-center">
-    <h2>Grocery Summary</h2>
-    <h4>Number of registered products: ${grocery.size()}</h4>
+    <h2>Users Summary</h2>
+    <h4>Number of registered customers: ${customers.size()}</h4>
 </div>
 
 <div class="container">
-    <form action="/product/grocery" method="get">
-        <button type="submit" class="btn btn-info">Add Product</button>
+    <form action="/customer" method="get">
+        <button type="submit" class="btn btn-info">Add Customer</button>
     </form>
 
-    <c:if test="${not empty grocery}">
+    <hr>
+
+    <c:if test="${not empty customers}">
         <c:if test="${not empty message}">
             <div class="alert alert-info">
                     ${message}
             </div>
         </c:if>
 
-        <hr>
-
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Distributor</th>
-                <th>Weight</th>
-                <th>Validity</th>
-                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>User</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="g" items="${grocery}">
+            <c:forEach var="customer" items="${customers}">
                 <tr>
-                    <td>${g.id}</td>
-                    <td>${g.name}</td>
-                    <td>${g.price}</td>
-                    <td>${g.qty}</td>
-                    <td>${g.distributor}</td>
-                    <td>${g.weight}</td>
-                    <td>${g.validity}</td>
-                    <td><a href="/product/grocery/${g.id}/delete">Delete</a></td>
+                    <td>${customer.id}</td>
+                    <td>${customer.firstName}</td>
+                    <td>${customer.lastName}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.contact}</td>
+                    <td>${customer.user.firstName}</td>
+                    <td><a href="/customer/${customer.id}/delete">Delete</a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </c:if>
 
-    <c:if test="${empty grocery}">
-        <h3>No product registered...</h3>
+    <c:if test="${empty customers}">
+        <h3>No registered user...</h3>
     </c:if>
 </div>
 

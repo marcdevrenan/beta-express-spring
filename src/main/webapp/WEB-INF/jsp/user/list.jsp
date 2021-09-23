@@ -12,57 +12,65 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/jsp/navbar.jsp"/>
+<c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
-    <div class="page-header text-center">
-        <h2>Users Summary</h2>
-        <h4>Number of registered users: ${list.size()}</h4>
-    </div>
+<div class="page-header text-center">
+    <h2>Users Summary</h2>
+    <h4>Number of registered users: ${users.size()}</h4>
+</div>
 
-    <div class="container">
-        <c:if test="${not empty list}">
-            <c:if test="${not empty message}">
-                <div class="alert alert-danger">
+<div class="container">
+    <c:if test="${not empty users}">
+        <c:if test="${not empty message}">
+            <div class="alert alert-danger">
                     ${message}
-                </div>
-            </c:if>
+            </div>
+        </c:if>
 
-            <table class="table table-striped">
-                <thead>
+        <hr>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Customers</th>
+                <th>Carts</th>
+                <th>Products</th>
+
+                <c:if test="${user.admin}">
+                    <th></th>
+                </c:if>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="u" items="${users}">
                 <tr>
-                    <th>Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Products</th>
+                    <td>${u.id}</td>
+                    <td>${u.firstName}</td>
+                    <td>${u.lastName}</td>
+                    <td>${u.email}</td>
+                    <td>${u.customers.size()}</td>
+                    <td>${u.carts.size()}</td>
+                    <td>${u.products.size()}</td>
 
-                    <c:if test="${user.admin}">
-                        <th></th>
+                    <c:if test="${user.admin && user.id != u.id}">
+                        <td><a href="/user/${u.id}/delete">Delete</a></td>
                     </c:if>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="u" items="${list}">
-                    <tr>
-                        <td>${u.id}</td>
-                        <td>${u.firstName}</td>
-                        <td>${u.lastName}</td>
-                        <td>${u.email}</td>
-                        <td>${u.products.size()}</td>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 
-                        <c:if test="${user.admin && user.id != u.id}">
-                            <td><a href="/user/${u.id}/delete">Delete</a></td>
-                        </c:if>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
+    <c:if test="${empty users}">
+        <h3>No registered user...</h3>
+    </c:if>
+</div>
 
-        <c:if test="${empty list}">
-            <h3>No registered user...</h3>
-        </c:if>
-    </div>
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

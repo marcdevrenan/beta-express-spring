@@ -6,7 +6,9 @@
         </div>
         <ul class="nav navbar-nav">
         <c:if test="${not empty user}">
-            <li><a href="/user/list">Customers</a></li>
+            <li><a href="/user/list">Users</a></li>
+            <li><a href="/customer/list">Customers</a></li>
+            <li><a href="/cart/list">Cart</a></li>
             <li><a href="/product/list">Products</a></li>
             <li><a href="/product/clothing/list">Clothing</a></li>
             <li><a href="/product/electronic/list">Electronic</a></li>

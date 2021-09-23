@@ -12,59 +12,63 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/jsp/navbar.jsp"/>
+<c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
-    <div class="page-header text-center">
-        <h2>Clothing Summary</h2>
-        <h4>Number of registered products: ${clothing.size()}</h4>
-    </div>
+<div class="page-header text-center">
+    <h2>Clothing Summary</h2>
+    <h4>Number of registered products: ${clothing.size()}</h4>
+</div>
 
-    <div class="container">
-        <form action="/product/clothing" method="get">
-            <button type="submit" class="btn btn-info">Add Product</button>
-        </form>
+<div class="container">
+    <form action="/product/clothing" method="get">
+        <button type="submit" class="btn btn-info">Add Product</button>
+    </form>
 
-        <c:if test="${not empty clothing}">
-            <c:if test="${not empty message}">
-                <div class="alert alert-success">
-                        ${message}
-                </div>
-            </c:if>
+    <hr>
 
-            <table class="table table-striped">
-                <thead>
+    <c:if test="${not empty clothing}">
+        <c:if test="${not empty message}">
+            <div class="alert alert-info">
+                    ${message}
+            </div>
+        </c:if>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Brand</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="c" items="${clothing}">
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Size</th>
-                    <th>Color</th>
-                    <th>Brand</th>
-                    <th></th>
+                    <td>${c.id}</td>
+                    <td>${c.name}</td>
+                    <td>${c.price}</td>
+                    <td>${c.qty}</td>
+                    <td>${c.size}</td>
+                    <td>${c.color}</td>
+                    <td>${c.brand}</td>
+                    <td><a href="/product/clothing/${c.id}/delete">Delete</a></td>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="c" items="${clothing}">
-                    <tr>
-                        <td>${c.id}</td>
-                        <td>${c.name}</td>
-                        <td>${c.price}</td>
-                        <td>${c.qty}</td>
-                        <td>${c.size}</td>
-                        <td>${c.color}</td>
-                        <td>${c.brand}</td>
-                        <td><a href="/product/clothing/${c.id}/delete">Delete</a></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 
-        <c:if test="${empty clothing}">
-            <h3>No product registered...</h3>
-        </c:if>
-    </div>
+    <c:if test="${empty clothing}">
+        <h3>No product registered...</h3>
+    </c:if>
+</div>
+
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

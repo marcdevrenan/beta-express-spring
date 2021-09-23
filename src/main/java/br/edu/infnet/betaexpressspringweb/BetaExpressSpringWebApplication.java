@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = {AccessController.class, UserService.class, DataLoader.class})
+@ComponentScan(basePackageClasses = {AccessController.class, UserService.class, UserLoader.class})
 @EntityScan(basePackages = {"br.edu.infnet.domain.model"})
 @EnableJpaRepositories(basePackages = {"br.edu.infnet.domain.repository"})
 @EnableFeignClients

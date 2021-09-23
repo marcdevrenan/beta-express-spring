@@ -3,6 +3,7 @@ package br.edu.infnet.domain.service;
 import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,11 @@ public class UserService {
     }
 
     public List<User> getList() {
-        return (List<User>) userRepository.findAll();
+        return (List<User>) userRepository.findAll(Sort.by(Sort.Direction.ASC, "firstName"));
+    }
+
+    public Integer getQty() {
+        return (int) userRepository.count();
     }
 
     public void delete(Integer id) {

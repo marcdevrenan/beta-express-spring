@@ -52,9 +52,24 @@
                 tortor viverra mollis at eget risus. Sed vulputate urna vitae augue maximus ornare.</p>
         </div>
     </div>
+
+    <div class="container">
+        <h2>System Inventory</h2>
+        <ul class="list-group">
+            <c:forEach var="map" items="${inventory}">
+                <li class="list-group-item">${map.key}<span class="badge">${map.value}</span></li>
+            </c:forEach>
+        </ul>
+    </div>
 </div>
 
-<c:import url="/WEB-INF/jsp/footer.jsp"/>
+<footer class="container-fluid text-center">
+    <div class="jumbotron navbar-inverse">
+        <h5>Project Architect:<b>Elberth Moraes</b></h5>
+        <h5>Project Developed By:<a target="_blank" href="https://github.com/marcdevrenan">github.com/marcdevrenan</a>
+        </h5>
+    </div>
+</footer>
 
 </body>
 </html>

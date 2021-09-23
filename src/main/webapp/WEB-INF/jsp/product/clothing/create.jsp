@@ -12,44 +12,46 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/jsp/navbar.jsp"/>
+<c:import url="/WEB-INF/jsp/navbar.jsp"/>
 
-    <div class="container">
-        <h2>Clothing Form</h2>
+<div class="container">
+    <h2>Clothing Form</h2>
 
-        <form action="/product/clothing/create" method="post">
-            <div class="form-group">
-                <label>Name:</label>
-                <input type="text" class="form-control" name="name">
-            </div>
+    <form action="/product/clothing/create" method="post">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
 
-            <div class="form-group">
-                <label>Price:</label>
-                <input type="number" min="1" step="any" class="form-control" name="price">
-            </div>
+        <div class="form-group">
+            <label>Price:</label>
+            <input type="number" min="1" step="any" class="form-control" name="price">
+        </div>
 
-            <div class="form-group">
-                <label>Qty:</label>
-                <input type="number" min="1" step="any" class="form-control" name="qty">
-            </div>
+        <div class="form-group">
+            <label>Qty:</label>
+            <input type="number" min="1" step="any" class="form-control" name="qty">
+        </div>
 
-            <div class="form-group">
-                <label>Size:</label>
-                <input type="text" class="form-control" name="size">
-            </div>
+        <div class="form-group">
+            <label>Size:</label>
+            <input type="text" class="form-control" name="size">
+        </div>
 
-            <div class="form-group">
-                <label>Color:</label>
-                <input type="text" class="form-control" name="color">
-            </div>
+        <div class="form-group">
+            <label>Color:</label>
+            <input type="text" class="form-control" name="color">
+        </div>
 
-            <div class="checkbox">
-                <label><input type="checkbox" name="brand">Brand</label>
-            </div>
+        <div class="checkbox">
+            <label><input type="checkbox" name="brand">Brand</label>
+        </div>
 
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+<c:import url="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
 </html>

@@ -4,6 +4,7 @@ import br.edu.infnet.domain.model.Electronic;
 import br.edu.infnet.domain.model.User;
 import br.edu.infnet.domain.repository.ElectronicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +24,15 @@ public class ElectronicService {
     }
 
     public List<Electronic> getList(User user) {
-        return (List<Electronic>) electronicRepository.getElectronicByUserId(user.getId());
+        return (List<Electronic>) electronicRepository.getElectronicByUserId(user.getId(), Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Electronic getById(Integer id) {
         return electronicRepository.findById(id).orElse(null);
+    }
+
+    public Integer getQty() {
+        return (int) electronicRepository.count();
     }
 
     public void delete(Integer id) {
